@@ -1,0 +1,5 @@
+---
+title: Second coffee blog
+date: 2021-07-20T16:49:12.125Z
+---
+Here is our second coffee blog.
