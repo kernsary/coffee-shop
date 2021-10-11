@@ -1,14 +1,20 @@
 import React from 'react';
 
 import Layout from '../components/Layout';
-import MenuCategory from '../components/MenuCategory';
+import Menu from '../components/Menu';
 
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 
-import styles from './menu.module.css';
+export default function MenuPage({ data }) {
 
-export default function Menu() {
-  const data = useStaticQuery(graphql`
+  return (
+    <Layout>
+     <Menu data={data} />
+    </Layout>
+  );
+}
+
+  export const query = graphql`
     {
       markdownRemark(frontmatter: { contentKey: { eq: "menu" } }) {
         frontmatter {
@@ -24,20 +30,4 @@ export default function Menu() {
         }
       }
     }
-  `);
-
-  return (
-    <Layout>
-      <div id={styles.main}>
-        <h1>{data.markdownRemark.frontmatter.title}</h1>
-        <div id={styles.menu}>
-          {data.markdownRemark.frontmatter.categories.map(category => (
-            <MenuCategory
-              key={category.name}
-              category={category} />
-          ))}
-        </div>
-      </div>
-    </Layout>
-  );
-}
+  `;
